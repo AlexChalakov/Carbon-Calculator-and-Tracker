@@ -9,7 +9,7 @@ contract CarbonEmissionTracker {
   struct EmissionRecord {
     uint256 timestamp;  // timestamp of emission recorded
     uint256 amount;     // amount of emission recorded in parts per million (ppm)
-    string category;    // description of emission recorded
+    string category;    // type of emission recorded
   }
 
   // Mapping of account to emission records
@@ -89,7 +89,7 @@ contract CarbonEmissionTracker {
   * @return The calculated carbon emissions in metric tons
   */
   function calculateCarbonEmissions(uint256 amount, uint256 emissionFactor) public pure returns (uint256) {
-    // as solidity does not support floating point numbers, we multiply by 1000000 to get ppm
-    return amount * emissionFactor / 1000000; // ppm to metric tons
+    // as solidity does not support floating point numbers, we record the emission factor in parts per million (ppm)
+    return amount * emissionFactor;
   }
 }
